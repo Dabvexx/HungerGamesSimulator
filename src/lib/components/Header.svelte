@@ -4,7 +4,6 @@
     import PageLink from '$lib/components/header/PageLink.svelte';
     import Hamburger from '$lib/components/header/Hamburger.svelte';
     import {MediaQuery} from 'svelte/reactivity';
-    import Dropdown from '$lib/components/header/Dropdown.svelte';
     import {browser} from '$app/environment';
     import {afterNavigate} from '$app/navigation';
 
@@ -21,43 +20,25 @@
 
 {#snippet Tools()}
     <PageLink href='/tools/hunger_games_simulator'>Hunger Games Simulator</PageLink>
-    <PageLink href='/tools/word_generator'>Word Generator</PageLink>
-    <PageLink href='/tools/speedrun'>Speedrun</PageLink>
-    <div data-sveltekit-reload>
-        <PageLink href='/ccc/vote'>CCC Voting Form</PageLink>
-    </div>
 {/snippet}
 
 {#snippet Extra()}
-    <PageLink href='/gambian_holiday'>Gambian Holiday Wiki</PageLink>
-    <PageLink href='/support-us'>Support Us</PageLink>
+
 {/snippet}
 
 <header class='fixed top-0 w-full [z-index:10000] flex select-none {mobile.current ? "" : "justify-between"}'>
-    <PageLink image={agma_logo} href='/'>AGMA SCHWA</PageLink>
     <nav>
         <Hamburger {mobile}>
             {#if in_ung_page}
                 <PageLink href='/ung'>UŊ</PageLink>
             {/if}
-            <PageLink href='/the-channel'>The Channel</PageLink>
-            <Dropdown href='/languages' name='Languages' {mobile}>
-                {#each langs as lang}
-                    <PageLink href="/languages/{lang.page}">{lang.name}</PageLink>
-                {/each}
-            </Dropdown>
-            <PageLink href='/comic'>Comic</PageLink>
-            <PageLink href='/merch'>Merch</PageLink>
-            {#if laptop.current}
-                <Dropdown name='Other' {mobile} align='right'>
-                    <PageLink href='/tools'>Tools</PageLink>
-                    {@render Tools()}
-                    {@render Extra()}
-                </Dropdown>
-            {:else}
-                <Dropdown href='/tools' name='Tools' {mobile} children={Tools} />
-                {@render Extra()}
-            {/if}
+
+            <PageLink
+                href="/tools/hunger_games_simulator"
+                class="hg-link"
+            >
+                Hunger Games Simulator
+            </PageLink>
         </Hamburger>
     </nav>
 </header>
@@ -82,4 +63,10 @@
             --nav-link-min-wd: 100%;
         }
     }
+
+    .hg-link {
+    white-space: nowrap;
+    min-width: max-content;
+    margin-right: 200rem; 
+}
 </style>

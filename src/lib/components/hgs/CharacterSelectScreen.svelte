@@ -2,7 +2,7 @@
     import Stripe from "$lib/components/Stripe.svelte";
     import { Configuration } from "../../js/configuration";
     import { DownloadURL } from "../../js/utils";
-    import type EventList from "$lib/js/game.svelte"
+    import type EventList from "$lib/js/gameTEMPGONE.svelte"
     import { PronounSetting } from "../../js/tribute";
     import { type TributeCharacterSelectOptions } from "../../js/tribute";
     /**import {
@@ -98,50 +98,14 @@
 
 <Stripe>Info</Stripe>
 <section>
-    <div class="center flex flex-col gap-8 float-right ml-4">
-        <img src="$lib/images/agma_logo_white.png" alt="Agma Schwa Logo" class="small-image">
-        <a class="bright-link" href="https://www.youtube.com/@AgmaSchwa">Subscribe to Agma Schwa</a>
-    </div>
     <p>
-        This Hunger Games Simulator exists because we were displeased with the
-        other simulators out there; the one that we were using prior to the creation
-        of this one (the one at brantsteele.net) made it very difficult to upload images
-        and was utilising a needlessly convoluted server-driven system.
+        Deez Nutz.
     </p>
     <p>
-        This simulator was created to address both of those shortcomings. With it, you can easily upload
-        whatever images you want. You can also just give it a URL that points to a publicly accessible image,
-        and it will work just fine—so long as your browser supports it, that is.
+        Gottem.
     </p>
-    <p>
-        What's more, this simulator runs entirely in the browser, meaning that you could even download
-        the page and use it offline if you so desired. This also means that it should be faster than
-        the simulator we were using before, since it does not need to send data to a server and back
-        every single time you press a button.
-    </p>
-    <p>
-        The events are mainly taken from the brantsteele.net simulator, though some members of our community
-        have contributed to the event list as well. You can disable existing events or add custom events by
-        clicking the ‘Settings’ button below and then ‘Edit Events’. You can also add new events, download
-        all events, and upload your own.
-    </p>
+
     <div class='clear-both'></div>
-</section>
-
-<Stripe>Source Code, Bug Reports, Contributing, etc.</Stripe>
-<section>
-    <p>
-        <strong>This project is no longer actively maintained since we didn’t have time for it anymore.</strong>
-    </p>
-    <p>
-        The source code of nguh.org, including the Hunger Games Simulator, is hosted in
-        <a href="https://github.com/Agma-Schwa/nguh.org">this GitHub repository</a>.
-    </p>
-    <p>
-        Thanks also to GitHub user @spaulmark for implementing the bulk-upload feature.
-    </p>
-
-    <Changelog />
 </section>
 
 <Stripe>Choose your characters</Stripe>

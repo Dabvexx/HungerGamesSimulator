@@ -59,7 +59,7 @@
             pb-4 pr-4
             flex flex-wrap
         '
-    >   <a href="https://www.youtube.com/@AgmaSchwa">
+    >   <!--<a href="https://www.youtube.com/@AgmaSchwa">
             <img src="{img_youtube}" alt="youtube" class="non-previewable-icon">
         </a>
         <a href="https://www.patreon.com/nguh">
@@ -85,7 +85,7 @@
         </a>
         <a href="https://github.com/Agma-Schwa/nguh.org">
             <img src="{img_github}" alt="github" class="non-previewable-icon">
-        </a>
+        </a>*-->
     </div>
 </div>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {Tribute} from "$lib/js/hgs.svelte";
+    import type { Tribute } from "$lib/js/tribute"
     import Message from "$lib/components/hgs/Message.svelte";
     import TributeImage from "$lib/components/hgs/TributeImage.svelte";
 
