@@ -1,5 +1,6 @@
 <script lang="ts">
-    import type {FormattedMessage} from "$lib/js/hgs.svelte";
+    import type { FormattedMessage } from "../../js/eventMessage";
+    //import type {FormattedMessage} from "$lib/js/hgs.svelte";
 
     interface Props {
         parts: FormattedMessage

@@ -1,6 +1,12 @@
 <script lang='ts'>
     import SimpleDialog from '$lib/components/dialog/SimpleDialog.svelte';
-    import {Configuration, DownloadURL, type EventList, Event, StringToObjectURL, TitleCase} from '$lib/js/hgs.svelte';
+    import { Configuration } from '$lib/js/configuration';
+    import { DownloadURL } from '$lib/js/utils';
+    import type { EventList } from '$lib/js/types';
+    import { Event } from '$lib/js/events';
+    import { StringToObjectURL } from '$lib/js/utils';
+    import { TitleCase } from '$lib/js/utils';
+    //import {Configuration, DownloadURL, type EventList, Event, StringToObjectURL, TitleCase} from '$lib/js/hgs.svelte';
     import SingleFileDialog from '$lib/components/dialog/SingleFileDialog.svelte';
     import AddEventDialog from '$lib/components/hgs/AddEventDialog.svelte';
     import {Err, Prompt} from '$lib/js/dialog.svelte';

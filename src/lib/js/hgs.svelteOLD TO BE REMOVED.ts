@@ -1,31 +1,31 @@
-import {UserError} from "$lib/js/dialog.svelte";
+import {UserError} from "./dialog.svelte";
 import default_image_src from '$lib/images/hgs-default-character.png'
-import {Persist} from '$lib/js/persist.svelte';
+import { Persist } from "./persist.svelte"
 
 // ====================================================================== //
 //  Utils                                                                 //
 // ====================================================================== //
 /** The ASCII code of the character `0`. */
-const char_zero = '0'.charCodeAt(0)
+/* const char_zero = '0'.charCodeAt(0) */
 
 /** The ASCII code of the character `9`. */
-const char_nine = '9'.charCodeAt(0)
+/* const char_nine = '9'.charCodeAt(0) */
 
 /** Using a predicate, check if two arrays are equal. */
-function ArraysEqual<T, U>(ts: T[], us: U[], predicate: (t: T, u: U) => boolean) {
+/* function ArraysEqual<T, U>(ts: T[], us: U[], predicate: (t: T, u: U) => boolean) {
     if (ts.length !== us.length) return false
     for (let i = 0; i < ts.length; i++)
         if (!predicate(ts[i], us[i]))
             return false
     return true
-}
+} */
 
 /** Prompt the user to download a file.
  *
  * @param filename The name that the file should have.
  * @param url The URL of the file.
  * */
-export function DownloadURL(filename: string, url: string) {
+/* export function DownloadURL(filename: string, url: string) {
     let a = document.createElement('a')
     a.setAttribute('href', url)
     a.setAttribute('download', filename)
@@ -33,32 +33,32 @@ export function DownloadURL(filename: string, url: string) {
     document.body.appendChild(a)
     a.click()
     a.remove()
-}
+} */
 
 /** Create a data URL for an object's JSON representation. */
-function ObjectToDataURL(obj: any) {
+/* function ObjectToDataURL(obj: any) {
     return 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(obj, null, 4))
-}
+} */
 
 /** Create a Blob from a string */
-function StringToBlob(str: string, mime_type: string = "application/json"): Blob {
+/* function StringToBlob(str: string, mime_type: string = "application/json"): Blob {
     return new Blob([str], {type: mime_type})
-}
+} */
 
 /** Convert a string to Title Case. */
-export function TitleCase(str: string): string {
+/* export function TitleCase(str: string): string {
     return str.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())
-}
+} */
 
 /** Create a Blob from a string */
-export function StringToObjectURL(str: string, mime_type: string = "application/json"): string {
+/* export function StringToObjectURL(str: string, mime_type: string = "application/json"): string {
     return URL.createObjectURL(StringToBlob(str, mime_type))
-}
+} */
 
 /** Clamp a number **/
-function clamp(x: number, lo: number, hi: number): number {
+/* function clamp(x: number, lo: number, hi: number): number {
     return Math.min(Math.max(x, lo), hi)
-}
+} */
 
 /**
  * Check if an object is of a given type.
@@ -66,23 +66,23 @@ function clamp(x: number, lo: number, hi: number): number {
  * The object must be of that exact type. This will return
  * `false` if the object is of a subtype of the type.
  */
-function has_type(o: any, type: Function): boolean {
+/* function has_type(o: any, type: Function): boolean {
     return typeof o === 'object' && o && o.constructor === type
-}
+} */
 
 /** Check if a character is between `'0'` and `'9'`. */
-function isdigit(char: string): boolean {
+/* function isdigit(char: string): boolean {
     let c = char.charCodeAt(0)
     return c >= char_zero && c <= char_nine
-}
+} */
 
 /** Generate a random integer in `[from;to[`. */
-function random(from: number, to: number): number {
+/* function random(from: number, to: number): number {
     return Math.floor(Math.random() * (to - from)) + from
-}
+} */
 
 /** Randomise the order of elements in an array in place. */
-function shuffle<T>(array: T[]): T[] {
+/* function shuffle<T>(array: T[]): T[] {
     if (array.length < 2) return array;
     for (let i = array.length - 1; i > 0; i--) {
         let j = random(0, i)
@@ -91,21 +91,21 @@ function shuffle<T>(array: T[]): T[] {
         array[j] = k
     }
     return array;
-}
+} */
 
 // ====================================================================== //
 //  Tags                                                                  //
 // ====================================================================== //
-export class Tag {
+/*export class Tag {
     static __next_id = 0
 
-    /** All known tags. The id of a tag is an index into this array. */
+    // All known tags. The id of a tag is an index into this array.
     static registered_tags: Tag[] = []
 
-    /** Index of the tag in the tag list. */
+    // Index of the tag in the tag list.
     readonly id: number
 
-    /** The actual name of the tag. */
+    // The actual name of the tag.
     __name: string
     get name(): string { return this.__name }
     set name(name: string) {
@@ -115,81 +115,84 @@ export class Tag {
         this.__name = name
     }
 
-    /** Creates a new tag. You probably want to use Tag.for() instead. */
+    // Creates a new tag. You probably want to use Tag.for() instead.
     constructor(name: string) {
         this.id = Tag.__next_id++
         this.__name = name
         Tag.registered_tags.push(this)
     }
 
-    /** Check if this tag is the same as another tag. */
+    // Check if this tag is the same as another tag.
     __equal(b: Tag) { return this.id == b.id }
+
+    //Multiblock moment
+    */
 
     /**
      * When serialised, a tag be represented by its name only.
      * The tags themselves are stored separately.
      */
-    toJSON() { return this.__name }
+    /*toJSON() { return this.__name }
 
-    /** Check if two tags are equal. */
+    // Check if two tags are equal. 
     static equal(a: Tag | null | undefined, b: Tag | null | undefined) {
         if (!(a instanceof Tag) || !(b instanceof Tag)) return false
         if (!has_type(a, b.constructor)) return false
         return a.__equal(b)
     }
 
-    /** Create a named tag for a given string. */
+    // Create a named tag for a given string. 
     static for(name: string): Tag { return Tag.registered_tags.find(t => t.name == name) ?? new Tag(name) }
 
-    /** Dump all tags as JSON */
+    // Dump all tags as JSON 
     static toJSON() { return this.registered_tags }
-}
+}*/
 
 // ====================================================================== //
 //  Tributes                                                              //
 // ====================================================================== //
-export const enum PronounSetting {
+/* export const enum PronounSetting {
     Masculine = "m",
     Feminine = "f",
     Common = "c",
     None = "n",
     Custom = "other",
 }
-
+ */
 /** Tribute data on the character select screen.. */
-export interface TributeCharacterSelectOptions {
+/* export interface TributeCharacterSelectOptions {
     name: string
     custom_pronouns?: string
     pronoun_option: PronounSetting
     image_url?: string
-}
+} */
 
 /** The options passed to the `Tribute` constructor. */
-export interface TributeOptions {
+/* export interface TributeOptions {
     uses_pronouns: boolean
     pronouns?: TributePronouns
     plural: boolean
     image: string
     tags?: Tag[]
-}
+} */
 
 /** The N/A/G/R pronouns used by a tribute. */
-export interface TributePronouns {
+/* export interface TributePronouns {
     nominative: string
     accusative: string
     genitive: string
     reflexive: string
-}
+} */
 
 /** Processed pronouns. */
-interface ParsedPronouns {
+/* interface ParsedPronouns {
     pronouns?: TributePronouns
     uses_pronouns: boolean
     plural: boolean
-}
+} */
 
 /** A tribute in game or on the character selection screen. */
-export class Tribute {
+/* export class Tribute {
     readonly raw_name: string
     readonly name: NameSpan
     readonly pronouns?: TributePronouns
@@ -212,7 +215,7 @@ export class Tribute {
         if (options.tags) this.__tags.push(...options.tags)
     }
 
-    /** Check whether this tribute has a given tag. */
+    // Check whether this tribute has a given tag.
     has(t: Tag): boolean {
         for (const tag of this.__tags)
             if (Tag.equal(tag, t))
@@ -220,15 +223,15 @@ export class Tribute {
         return false
     }
 
-    /** Add a tag to this tribute. */
+    // Add a tag to this tribute.
     tag(t: Tag): void { if (!this.has(t)) this.__tags.push(t) }
-}
+} */
 
 /**
  * Parse a pronoun string into a TributePronouns object.
  * @throw UserError if the string is invalid.
  */
-function ParsePronounsFromCharacterCreation(character: TributeCharacterSelectOptions): ParsedPronouns {
+/* function ParsePronounsFromCharacterCreation(character: TributeCharacterSelectOptions): ParsedPronouns {
     let plural = false
     let uses_pronouns = true
     let tribute_pronouns: TributePronouns | undefined = undefined
@@ -265,19 +268,19 @@ function ParsePronounsFromCharacterCreation(character: TributeCharacterSelectOpt
     }
 
     return {pronouns: tribute_pronouns, uses_pronouns, plural}
-}
+} */
 
 // ====================================================================== //
 //  Configuration and Versioning                                          //
 // ====================================================================== //
-export namespace Configuration {
+/* export namespace Configuration {
     interface MaybeConfig {version?: number}
     interface StoredURL {url: string}
     interface StoredBlob {data: string}
 
-    /** Legacy (unversioned) configuration. */
+    // Legacy (unversioned) configuration.
     namespace Legacy {
-        /** An event in a legacy config file. */
+        // An event in a legacy config file.
         export interface StoredEvent {
             message: string,
             players_involved: number,
@@ -288,7 +291,7 @@ export namespace Configuration {
             type: string
         }
 
-        /** The options passed to the `Tribute` constructor. */
+        // The options passed to the `Tribute` constructor.
         interface StoredTributeOptions {
             name: string
             gender_select: string
@@ -300,34 +303,36 @@ export namespace Configuration {
 
         export type Config = EventList<StoredEvent>
 
-        /** Check whether a configuration is a legacy configuration. */
+        // Check whether a configuration is a legacy configuration.
         export function is(conf: any): conf is Config {
             return !conf || !('version' in conf)
         }
 
-        /** Check whether a configuration is a legacy character configuration. */
+        // Check whether a configuration is a legacy character configuration.
         export function IsCharacterConfig(conf: any): conf is CharacterConfig {
             return !conf || !('version' in conf)
         }
 
-        /** Check whether two events are to be considered equal */
+        // Check whether two events are to be considered equal
         export function EventsEqual(stored: StoredEvent, event: Event) {
             return stored && event && stored.message === event.message
         }
 
-        /** Load an event from StoredEvent. */
+        // Load an event from StoredEvent.
         export function LoadEvent(stored: StoredEvent, list: Event[]) {
             let event = new Event(stored.message, stored.fatalities, stored.killers, stored.type)
             event.enabled = stored.enabled
             list.push(event)
         }
 
+        // Block comment moment
+        */
         /**
          * Load characters from a file.
          *
          * This function is only async because it is async in later config versions.
          **/
-        export async function LoadCharacters(data: CharacterConfig): Promise<TributeCharacterSelectOptions[]> {
+/*         export async function LoadCharacters(data: CharacterConfig): Promise<TributeCharacterSelectOptions[]> {
             return data.characters.map(({ name, custom_pronouns, gender_select, image }) => {
                 // Load the image from a URL if it’s not a blob. Old versions of the simulator
                 // would produce URLs ending in ‘[object%20Object]’ for some reason. Ignore those.
@@ -346,18 +351,19 @@ export namespace Configuration {
                 }
             })
         }
-    } // namespace Legacy
+    } */ // namespace Legacy
 
     /** Configuration version 1. */
-    export namespace V1 {
-        /** Tag info as stored in a config file. */
+
+/*     export namespace V1 {
+        // Tag info as stored in a config file.
         export interface StoredTag {name: string}
         export interface StoredTagRequirement {
             name: string,
             player_index: number
         }
 
-        /** An event in a V1 config file. */
+        // An event in a V1 config file.
         export interface StoredEvent {
             message: string,
             fatalities: number[],
@@ -392,17 +398,17 @@ export namespace Configuration {
             Custom = 'CUSTOM',
         }
 
-        /** Check whether a configuration is a legacy configuration. */
+        // Check whether a configuration is a legacy configuration.
         export function is(conf: any): conf is Config {
             return conf && conf.version === 1
         }
 
-        /** Check whether a configuration is a legacy character configuration. */
+        // Check whether a configuration is a legacy character configuration.
         export function IsCharacterConfig(conf: any): conf is CharacterConfig {
             return conf && conf.version === 1
         }
 
-        /** Check whether two events are to be considered equal */
+        // Check whether two events are to be considered equal
         export function EventsEqual(stored: StoredEvent, event: Event) {
             return stored !== null && event !== null
                 && stored.message === event.message
@@ -410,7 +416,7 @@ export namespace Configuration {
                     (s, e) => s.name === e.tag.name && s.player_index === e.player_index)
         }
 
-        /** Load an event from StoredEvent. */
+        // Load an event from StoredEvent.
         export function LoadEvent(stored: StoredEvent, list: Event[]) {
             let event = new Event(stored.message, stored.fatalities, stored.killers, stored.type)
             event.enabled = stored.enabled && stored.type !== StoredEventTag.BigLang
@@ -418,15 +424,18 @@ export namespace Configuration {
             list.push(event)
         }
 
-        /** Load a tag from a TagInfo struct */
+        // Load a tag from a TagInfo struct
         export function LoadTag(data: StoredTag) { Tag.for(data.name) }
 
-        /** Stringify a tag for the purpose of storing and loading it. */
+        // Stringify a tag for the purpose of storing and loading it.
         export function StringifyTag() {
             // @ts-ignore
             const info: StoredTag = {name: this.__name}
             return JSON.stringify(info, null, 4)
         }
+
+        // Block comment moment
+        */
 
         /** Check whether a tag already exists.
          *
@@ -434,9 +443,9 @@ export namespace Configuration {
          * LoadTag() calls Tag.for(), which already checks whether a tag
          * already exists, this function can just return true.
          */
-        export function TagExists(_: StoredTag) { return true }
+        /*export function TagExists(_: StoredTag) { return true }
 
-        /** Load characters from a file. **/
+        // Load characters from a file.
         export async function LoadCharacters(data: CharacterConfig): Promise<TributeCharacterSelectOptions[]> {
             return await Promise.all(data.characters.map(async ({ name, gender_select, pronoun_str, image }) => {
                 let image_url: string | undefined = undefined
@@ -474,7 +483,7 @@ export namespace Configuration {
     export const current_config_version = 1
 
     /** Check if an event exists */
-    function EventExists<T>(
+/*     function EventExists<T>(
         into_list: Event[],
         conf_event: T,
         equal: EventComparator<T>
@@ -484,9 +493,9 @@ export namespace Configuration {
                 return true;
         return false;
     }
-
-    /** Load the events from the configuration. */
-    function LoadEvents<T>(
+ */
+    // Load the events from the configuration.
+/*     function LoadEvents<T>(
         into: EventList,
         lists: EventList<T>,
         equal: EventComparator<T>,
@@ -497,15 +506,15 @@ export namespace Configuration {
             lists[key]?.filter(e => !EventExists(into[key]!!, e, equal))
                      ?.forEach(e => loader(e, into[key]!!))
         }
-    }
-
+    } */
+/* 
     function LoadTags<T>(tags: T[], exists: TagExistsP<T>, loader: TagLoader<T>) {
         tags.filter(t => !exists(t))
             .forEach(t => loader(t))
-    }
+    } */
 
     /** Load a configuration. */
-    export function Load(
+/*     export function Load(
         into: EventList,
         configuration: MaybeConfig,
         overwrite: boolean = false,
@@ -532,7 +541,7 @@ export namespace Configuration {
 
         // Invalid Configuration. If we're loading from localStorage, just ignore it.
         else if (!from_local_storage) throw Error(`Invalid config version ${configuration.version}`)
-    }
+    } */
 
     /**
      * Load the default configuration.
@@ -540,14 +549,14 @@ export namespace Configuration {
      * This should never throw; if it does, there is something horribly wrong
      * with the default configuration below.
      */
-    export function LoadDefaultConfig(): EventList {
+/*     export function LoadDefaultConfig(): EventList {
         const into = {}
         Load(into, BuiltinDefaultConfig, true)
         return into
-    }
+    } */
 
     /** Create an object containing the events data to store. */
-    function SaveEvents(event_list: EventList): EventList<V1.StoredEvent> {
+/*     function SaveEvents(event_list: EventList): EventList<V1.StoredEvent> {
         let lists = {
             all: [] as V1.StoredEvent[],
             bloodbath: [] as V1.StoredEvent[],
@@ -580,26 +589,26 @@ export namespace Configuration {
         }
 
         return lists
-    }
+    } */
 
     /** Create an object containing the tag data to store. */
-    function SaveTags(): V1.StoredTag[] {
+/*     function SaveTags(): V1.StoredTag[] {
         let tags: V1.StoredTag[] = []
         for (const tag of Tag.registered_tags) tags.push({name: tag.name})
         return tags
-    }
+    } */
 
     /** Save the configuration. */
-    export function Save(event_list: EventList): V1.Config {
+/*     export function Save(event_list: EventList): V1.Config {
         return {
             version: current_config_version,
             events: SaveEvents(event_list),
             tags: SaveTags()
         }
-    }
+    } */
 
     /** Like the Event constructor, but creates a stored event instead. */
-    export function MakeStoredEvent(
+/*     export function MakeStoredEvent(
         message: string,
         fatalities: number[] = [],
         killers: number[] = [],
@@ -614,14 +623,14 @@ export namespace Configuration {
             enabled: true,
             tag_requirements: reqs
         }
-    }
+    } */
 
     /**
      * Save characters to a serialised list.
      *
      * @throws Error if we can’t serialise a character.
      **/
-    export async function SerialiseCharacters(tributes: TributeCharacterSelectOptions[]): Promise<V1.StoredTributeOptions[]> {
+/*     export async function SerialiseCharacters(tributes: TributeCharacterSelectOptions[]): Promise<V1.StoredTributeOptions[]> {
         return Promise.all(tributes.map(async ({name, custom_pronouns, pronoun_option, image_url}) => {
             // Image.
             let image: V1.StoredTributeImage | undefined = undefined
@@ -646,35 +655,35 @@ export namespace Configuration {
                 tags: [],
             }
         }))
-    }
+    } */
 
     /**
      * Save characters to a file.
      *
      * @throws Error if we can’t serialise a character.
      **/
-    export async function SaveCharacters(tributes: TributeCharacterSelectOptions[]): Promise<V1.CharacterConfig> {
+/*     export async function SaveCharacters(tributes: TributeCharacterSelectOptions[]): Promise<V1.CharacterConfig> {
         return {
             version: current_config_version,
             characters: await SerialiseCharacters(tributes)
         }
-    }
+    } */
 
     /** Load characters from a file. **/
-    export async function LoadCharacters(data: object): Promise<TributeCharacterSelectOptions[]> {
+/*     export async function LoadCharacters(data: object): Promise<TributeCharacterSelectOptions[]> {
         if (Legacy.IsCharacterConfig(data)) return await Legacy.LoadCharacters(data);
         else if (V1.IsCharacterConfig(data)) return await V1.LoadCharacters(data);
         else throw Error(`Invalid character configuration file`)
     }
-}
+} */
 
 // ====================================================================== //
 //  Event                                                                 //
 // ====================================================================== //
-export class NameSpan {
+/* export class NameSpan {
     readonly value: string
     constructor(value: string) { this.value = value }
-}
+} */
 
 /**
  * Formatted message parts.
@@ -682,7 +691,7 @@ export class NameSpan {
  * The reason this is a thing is to be able to both highlight player names in
  * the message while also preventing HTML injection.
  */
-export type FormattedMessage = (string | NameSpan)[]
+//export type FormattedMessage = (string | NameSpan)[]
 
 /**
  * Generate a message describing an event based on the event's message
@@ -692,7 +701,7 @@ export type FormattedMessage = (string | NameSpan)[]
  * @throw Error if the message template is ill-formed.
  * @return The formatted event message.
  */
-function ComposeEventMessage(event: GameEvent): FormattedMessage {
+/* function ComposeEventMessage(event: GameEvent): FormattedMessage {
     // Determine whether there is a tribute w/ index `index`.
     function check_bounds(event: GameEvent, index: number) {
         if (index >= event.event.players_involved) throw Error(`
@@ -781,27 +790,27 @@ function ComposeEventMessage(event: GameEvent): FormattedMessage {
         }
     if (prev < m.length) composed.push(m.slice(prev))
     return composed
-}
+} */
 
 /** Calculate the number of tributes required based on the message template. */
-export function CalculateTributesInvolved(raw_message: string): number {
+/* export function CalculateTributesInvolved(raw_message: string): number {
     const v_raw = raw_message.match(/%[NAGRsyih!]?(\d)/g)
         ?.map(x => +x.slice(-1))
         ?.reduce((prev, curr) => Math.max(prev, curr), 0)
     const value = typeof v_raw === 'undefined' ? 0 : v_raw + 1
     return Number.isFinite(value) ? value : 0
-}
+} */
 
 /** A requirement that must be satisfied for an event to be eligible. */
-interface TagRequirement {
+/* interface TagRequirement {
     tag: Tag
     player_index: number
-}
+} */
 
-export type EventListKey = keyof EventList
+//export type EventListKey = keyof EventList
 
 /** An event in the event list (NOT in game; for that, see `GameEvent`). */
-export class Event {
+/* export class Event {
     static __last_id = -1
     static readonly list_keys = ['day', 'all', 'feast', 'night', 'bloodbath'] as const satisfies EventListKey[]
     static readonly list_keys_logical_order = ['bloodbath', 'day', 'night', 'feast', 'all'] as const satisfies EventListKey[]
@@ -835,10 +844,11 @@ export class Event {
         this.id = ++Event.__last_id
         this.type = type
         this.requirements = []
-    }
+    } */
 
+    /** !!IMPORTANT!! */
     /** Add a requirement to this event */
-    require(tag: Tag, player_index: number): this {
+/*     require(tag: Tag, player_index: number): this {
         if (player_index >= this.players_involved)
             throw Error(`Cannot add requirement for player ${player_index} since the event only involves ${this.players_involved} players`)
 
@@ -849,35 +859,35 @@ export class Event {
         })
         return this
     }
-}
+} */
 
 // ====================================================================== //
 //  Settings                                                              //
 // ====================================================================== //
-export interface GreyscaleSettings {
+/* export interface GreyscaleSettings {
     in_events: boolean,
     end_of_day_summary: boolean,
     end_of_game_summary: boolean,
-}
+} */
 
 // ====================================================================== //
 //  Game                                                                  //
 // ====================================================================== //
-export const enum RequiredFatalitiesMode {
+/* export const enum RequiredFatalitiesMode {
     Disable = 'Disable',
     Percent = 'Percent',
     Absolute = 'Absolute',
-}
+} */
 
-export interface GameOptions {
+/* export interface GameOptions {
     required_fatalities_mode: RequiredFatalitiesMode,
     required_fatalities: number
     starting_day?: number
     greyscale_settings: GreyscaleSettings
-}
+} */
 
 /** The state of the game. */
-export const enum GameState {
+/* export const enum GameState {
     DEAD,
     NEW_ROUND,
     IN_ROUND,
@@ -888,28 +898,28 @@ export const enum GameState {
     END_SUMMARY_STATS,
     END,
     INITIAL = NEW_ROUND,
-}
+} */
 
 /** The render state of the game. */
-export const enum RenderState {
+/* export const enum RenderState {
     GAME_OVER,
     ROUND_EVENTS,
     ROUND_DEATHS,
     WINNERS,
     GAME_DEATHS,
     STATS,
-}
+} */
 
 /** These correspond to the event lists. */
-export enum GameStage {
+/* export enum GameStage {
     BLOODBATH = 'bloodbath',
     DAY = 'day',
     NIGHT = 'night',
     FEAST = 'feast'
-}
+} */
 
 /** An in-game event. */
-class GameEvent {
+/* class GameEvent {
     event: Event
     players_involved: Tribute[]
     message: FormattedMessage
@@ -919,50 +929,50 @@ class GameEvent {
         this.players_involved = players_involved
         this.message = ComposeEventMessage(this)
     }
-}
+} */
 
 /** The event list holding all the events in the game. */
-interface GameEventList {
+/* interface GameEventList {
     bloodbath: Event[],
     day: Event[],
     night: Event[],
     feast: Event[]
-}
+} */
 
 /** An event list that may contain events for different stages. */
-export interface EventList<T = Event> {
+/* export interface EventList<T = Event> {
     bloodbath?: T[],
     day?: T[],
     night?: T[],
     feast?: T[]
     all?: T[]
-}
+} */
 
 /** A single round in the game. */
-interface GameRound {
+/* interface GameRound {
     game_events: GameEvent[],
     died_this_round: Tribute[],
     index: number,
     stage: GameStage
-}
+} */
 
-export class GameRenderState {
-    /** The render state of the game. */
+/* export class GameRenderState {
+    // The render state of the game.
     readonly state: RenderState
 
-    /** Title to display at the top of the screen. */
+    // Title to display at the top of the screen.
     readonly game_title: string
 
-    /** The game rounds. */
+    // The game rounds.
     readonly rounds: GameRound[]
 
-    /** The tributes that died this day. */
+    // The tributes that died this day.
     readonly tributes_died: Tribute[]
 
-    /** The tributes that are still alive. */
+    // The tributes that are still alive.
     readonly tributes_alive: Tribute[]
 
-    /** When to render portraits in greyscale. */
+    // When to render portraits in greyscale.
     readonly greyscale_settings: GreyscaleSettings
 
     constructor(
@@ -986,14 +996,14 @@ export class GameRenderState {
     get has_deaths() { return this.deaths > 0 }
     get round() { return this.rounds[this.rounds.length - 1] }
     is(...state: RenderState[]) { return state.includes(this.state) }
-}
+} */
 
-export class Game {
+/* export class Game { */
     /** All tributes in the game, irrespective of alive or dead. */
-    readonly tributes: Tribute[]
+    /* readonly tributes: Tribute[] */
 
     /** All tributes that are still alive. */
-    tributes_alive: Tribute[]
+    /* tributes_alive: Tribute[] */
 
     /**
      * All tributes that died since the last time we showed deaths.
@@ -1001,46 +1011,46 @@ export class Game {
      * For instance, if there was a bloodbath, day, and night, this will
      * include the deaths for all three of those rounds.
      */
-    #tributes_died: Tribute[] = []
+    /* #tributes_died: Tribute[] = [] */
 
     /** The current state of the game (i.e. of the last round). */
-    #state: GameState = GameState.INITIAL
+    /* #state: GameState = GameState.INITIAL */
 
     /** The title of the current round. */
-    #game_title: string = ''
+    /* #game_title: string = '' */
 
     /** The last time a feast happened. */
-    last_feast: number = 0
+    /* last_feast: number = 0 */
 
     /** The current game stage. */
-    stage: GameStage = GameStage.BLOODBATH
+    /* stage: GameStage = GameStage.BLOODBATH */
 
     /** Rate at which events that result in a fatality are rerolled. */
-    readonly fatality_reroll_rate: number
+    /* readonly fatality_reroll_rate: number */
 
     /** Whether every tribute that is still alive has won. */
-    all_won: boolean = false
+    /* all_won: boolean = false */
 
     /** All rounds that have happened since the start of this game. */
-    rounds: GameRound[] = []
+    /* rounds: GameRound[] = [] */
 
     /** Number of days that have passed. */
-    days_passed: number = 0
+    /* days_passed: number = 0 */
 
     /** Number of nights that have passed. */
-    nights_passed: number = 0
+    /* nights_passed: number = 0 */
 
     /** Event list used by this game. */
-    readonly event_list: GameEventList
+    /* readonly event_list: GameEventList */
 
     /** Minimum number of fatalities per round. */
-    readonly required_fatalities: number | undefined = undefined
+    /* readonly required_fatalities: number | undefined = undefined */
 
     /** Greyscale mode. */
-    readonly #greyscale_settings: GreyscaleSettings
+    /* readonly #greyscale_settings: GreyscaleSettings */
 
     /** Create a new game. */
-    constructor(
+/*     constructor(
         tributes: Tribute[],
         events: EventList,
         fatality_reroll_rate: number = .6
@@ -1082,13 +1092,13 @@ export class Game {
         this.#greyscale_settings = opts.greyscale_settings
 
         this.#AddEvents(events)
-    }
+    } */
 
     /** Get the current round. */
-    get last_round() { return this.rounds[this.rounds.length - 1] }
+    /* get last_round() { return this.rounds[this.rounds.length - 1] } */
 
     /** Add all events from an event list to the game. */
-    #AddEvents(event_option_list: EventList) {
+/*     #AddEvents(event_option_list: EventList) {
         if (event_option_list.all) {
             for (let event_list of [this.event_list.bloodbath, this.event_list.day, this.event_list.night, this.event_list.feast])
                 event_list.push(...event_option_list.all.filter(e => e.enabled))
@@ -1097,10 +1107,10 @@ export class Game {
         for (let property of [GameStage.BLOODBATH, GameStage.DAY, GameStage.NIGHT, GameStage.FEAST])
             if (event_option_list[property])
                 this.event_list[property].push(...(<Event[]>event_option_list[property]).filter(e => e.enabled))
-    }
+    } */
 
     /** The main state machine controlling the game. */
-    #AdvanceGame(): GameRenderState {
+/*     #AdvanceGame(): GameRenderState {
         const state = this.#TickRenderState()
 
         // Advance the state and perform and action accordingly.
@@ -1158,10 +1168,10 @@ export class Game {
             this.tributes_alive,
             this.#greyscale_settings
         );
-    }
+    } */
 
     /** Determine what the next game stage should be. */
-    #AdvanceGameStage(): GameStage {
+/*     #AdvanceGameStage(): GameStage {
         // Start of game is always Bloodbath.
         if (this.rounds.length === 0) return GameStage.BLOODBATH
 
@@ -1198,20 +1208,20 @@ export class Game {
 
         this.nights_passed++
         return GameStage.NIGHT
-    }
+    } */
 
     /** Determine whether the game should end based on how may tributes are alive or whether all should win. */
-    #CheckGameShouldEnd() {
+/*     #CheckGameShouldEnd() {
         if (this.tributes_alive.length < 2 || this.all_won) {
             this.#state = GameState.END_RESULTS
             return true
         }
 
         return false
-    }
+    } */
 
     /** Perform the next round and advance the game state. */
-    #DoRound() {
+/*     #DoRound() {
         this.stage = this.#AdvanceGameStage()
         this.#DoRoundImpl()
 
@@ -1219,7 +1229,7 @@ export class Game {
         // of this round if it was night.
         if (!this.#CheckGameShouldEnd() && this.stage == GameStage.NIGHT)
             this.#state = GameState.THE_FALLEN
-    }
+    } */
 
     /**
      * Perform the next round.
@@ -1227,7 +1237,7 @@ export class Game {
      * This keeps choosing events randomly until all characters
      * have acted in an event.
      */
-    #DoRoundImpl() {
+/*     #DoRoundImpl() {
         // Get the number of tributes.
         let tributes_left = this.tributes_alive.length
         let tributes_alive = tributes_left
@@ -1318,7 +1328,7 @@ export class Game {
         // And add them to the list of all tributes that have died since we last
         // displayed deaths.
         this.#tributes_died.push(...round.died_this_round)
-    }
+    } */
 
     /**
      * Check requirements for an event.
@@ -1326,7 +1336,7 @@ export class Game {
      * There are several restrictions as to what events we can use
      * at any given point in time.
      */
-    #RequirementsSatisfied(
+/*     #RequirementsSatisfied(
         event: Event,
         current_tribute: number,
         tributes_left: number,
@@ -1355,15 +1365,15 @@ export class Game {
 
         // Otherwise this event is fine.
         return true;
-    }
+    } */
 
     /** Start a new round. */
-    #StartNewRound() {
+/*     #StartNewRound() {
         this.#tributes_died = []
-    }
+    } */
 
     /** Set and determine the current render state. */
-    #TickRenderState(): RenderState {
+/*     #TickRenderState(): RenderState {
         switch (this.#state) {
             case GameState.NEW_ROUND:
             case GameState.IN_ROUND:
@@ -1386,19 +1396,19 @@ export class Game {
             case GameState.END:
                 return RenderState.GAME_OVER
         }
-    }
+    } */
 
     /** Step the game by a round. */
-    AdvanceGame(): GameRenderState | Error {
+/*     AdvanceGame(): GameRenderState | Error {
         return Game.#Try(() => this.#AdvanceGame())
-    }
+    } */
 
     /**
      * Convert tributes on the character select screen to the in-game tributes.
      *
      * @return An array of tributes or an error if the conversion failed.
      */
-    static CreateTributesFromCharacterSelectOptions(
+/*     static CreateTributesFromCharacterSelectOptions(
         options: TributeCharacterSelectOptions[]
     ): Tribute[] | Error {
         return Game.#Try(() => options.map((character) => {
@@ -1412,12 +1422,12 @@ export class Game {
                 tags: []
             })
         }))
-    }
+    } */
 
-    static #Try<T>(func: () => T): T | Error {
+/*     static #Try<T>(func: () => T): T | Error {
         try { return func() }
         catch (e) { return e as Error }
-    }
+    } */
 
 /*    static events() {
         return {
@@ -1428,14 +1438,14 @@ export class Game {
                         yield event
             }
         }
-    }*/
-}
+    }
+}*/
 
 // ====================================================================== //
 //  Data                                                                  //
 // ====================================================================== //
 /** Default event list. */
-const BuiltinEventList: EventList<Configuration.V1.StoredEvent> = Object.freeze({
+/* const BuiltinEventList: EventList<Configuration.V1.StoredEvent> = Object.freeze({
     bloodbath: [
         Configuration.MakeStoredEvent(`%0 runs away from the Cornucopia.`),
         Configuration.MakeStoredEvent(`%0 grabs a shovel.`),
@@ -1722,15 +1732,15 @@ const BuiltinEventList: EventList<Configuration.V1.StoredEvent> = Object.freeze(
         Configuration.MakeStoredEvent(`Fed up with %0 insisting %N0 %i0 the \"mother of all languages,\" %1 and %2 brutally strangle %A0 and bond over the experience.`, [0], [1, 2], Configuration.V1.StoredEventTag.BigLang),
         Configuration.MakeStoredEvent(`%0 gets sick and can now only produce nasal vowels.`, [], [], Configuration.V1.StoredEventTag.BigLang)
     ]
-})
+}) */
 
-const BuiltinDefaultConfig: Configuration.V1.Config = Object.freeze({
+/* const BuiltinDefaultConfig: Configuration.V1.Config = Object.freeze({
     version: 1,
     events: BuiltinEventList,
     tags: []
-})
+}) */
 
-export const GameSettings = Persist('hgs_settings', {
+/* export const GameSettings = Persist('hgs_settings', {
     required_fatalities: 0,
     required_fatalities_mode: RequiredFatalitiesMode.Disable,
     starting_day: undefined,
@@ -1739,4 +1749,4 @@ export const GameSettings = Persist('hgs_settings', {
         end_of_game_summary: false,
         end_of_day_summary: true
     }
-} as GameOptions)
+} as GameOptions) */

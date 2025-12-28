@@ -1,5 +1,7 @@
 import Dexie, {type EntityTable} from 'dexie';
-import {Configuration, type GameOptions} from '$lib/js/hgs.svelte';
+import { Configuration } from '$lib/js/configuration';
+import type { GameOptions } from '$lib/js/gameOptions';
+/* import {Configuration, type GameOptions} from '$lib/js/hgs.svelte'; */
 
 export const db = new Dexie('HungerGamesSimulator') as Dexie & {
     tributes: EntityTable<Configuration.V1.StoredTributeOptions>,

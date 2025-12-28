@@ -1,10 +1,13 @@
 <script lang='ts'>
     import SimpleDialog from '$lib/components/dialog/SimpleDialog.svelte';
-    import {
+    import type { EventList } from '$lib/js/types';
+    import { GameSettings } from '$lib/js/gameOptions';
+    import { RequiredFatalitiesMode } from '$lib/js/gameOptions';
+/*     import {
         type EventList,
         GameSettings,
         RequiredFatalitiesMode
-    } from '$lib/js/hgs.svelte';
+    } from '$lib/js/hgs.svelte'; */
     import EditEventsDialog from '$lib/components/hgs/EditEventsDialog.svelte';
     import Checkbox from '$lib/components/Checkbox.svelte';
 

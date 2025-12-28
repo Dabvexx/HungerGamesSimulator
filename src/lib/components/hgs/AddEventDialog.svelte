@@ -1,14 +1,19 @@
 <script lang="ts">
     import Dialog from '$lib/components/dialog/Dialog.svelte';
-    import {
+    import { Configuration } from '$lib/js/configuration';
+    import { Event as HGSEvent } from '$lib/js/events';
+    import type { EventList } from '$lib/js/types';
+    import type { EventListKey } from '$lib/js/events';
+    import { GameStage } from '$lib/js/types';
+    import { TitleCase } from '$lib/js/utils';
+    /* import {
         Configuration,
         Event as HGSEvent,
         type EventList,
         type EventListKey, GameStage
     } from '$lib/js/hgs.svelte';
-    import {TitleCase} from '$lib/js/hgs.svelte.js';
+    import {TitleCase} from '$lib/js/hgs.svelte.js'; */
     import SimpleDialog from '$lib/components/dialog/SimpleDialog.svelte';
-    import StoredEventTag = Configuration.V1.StoredEventTag;
     import {Err} from '$lib/js/dialog.svelte';
 
     interface Props {
@@ -35,9 +40,10 @@
         try {
             const deaths_list = Parse(deaths)
             const killers_list = Parse(killers)
-            const event = new HGSEvent(message, deaths_list, killers_list, StoredEventTag.Custom)
-            event_list[stage] ??= []
-            event_list[stage]!!.push(event)
+            const event = new HGSEvent(message, deaths_list, killers_list, Configuration.V1.StoredEventTag.Custom)
+            type StageKey = keyof EventList<HGSEvent>; // "bloodbath" | "day" | "night" | "feast" | "all"
+            event_list[stage as StageKey] ??= [];
+            event_list[stage as StageKey]!.push(event);
             dialog.resolve()
         } catch (e: any) {
             Err(e)
@@ -93,18 +99,21 @@
                  "
                  style="grid-template-columns: auto 1fr;"
             >
-                <label>Stage</label>
-                <select id="stage" bind:value={stage}>
-                    {#each HGSEvent.list_keys_logical_order as key}
-                        <option value={key}>{TitleCase(key)}</option>
-                    {/each}
-                </select>
-                <label>Message</label>
-                <input type="text" id="message" placeholder="%0 and %1 ambush %2 and %3, killing them both." bind:value={message}>
-                <label>Deaths</label>
-                <input type="text" id="deaths" placeholder="2, 3" bind:value={deaths}>
-                <label>Killers</label>
-                <input type="text" id="killers" placeholder="0, 1" bind:value={killers}>
+            <label for="stage">Stage</label>
+            <select id="stage" bind:value={stage}>
+                {#each HGSEvent.list_keys_logical_order as key}
+                    <option value={key}>{TitleCase(key)}</option>
+                {/each}
+            </select>
+            
+            <label for="message">Message</label>
+            <input type="text" id="message" placeholder="%0 and %1 ambush %2 and %3, killing them both." bind:value={message}>
+            
+            <label for="deaths">Deaths</label>
+            <input type="text" id="deaths" placeholder="2, 3" bind:value={deaths}>
+            
+            <label for="killers">Killers</label>
+            <input type="text" id="killers" placeholder="0, 1" bind:value={killers}>
             </div>
         </div>
     {/snippet}

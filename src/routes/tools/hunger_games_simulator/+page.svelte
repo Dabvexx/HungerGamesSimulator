@@ -3,17 +3,20 @@
     import Page from '$lib/components/Page.svelte';
     import Stripe from '$lib/components/Stripe.svelte';
     import CharacterSelectScreen from '$lib/components/hgs/CharacterSelectScreen.svelte';
-    import {
-        Configuration,
-        type EventList,
-        type FormattedMessage,
-        Game,
-        type GameRenderState,
-        PronounSetting,
-        RenderState,
-        TitleCase,
-        type TributeCharacterSelectOptions
-    } from '$lib/js/hgs.svelte';
+
+    // Hunger Games Simulator imports
+    import { Configuration } from '$lib/js/configuration';
+    import type { EventList } from '$lib/js/types';
+    import { type FormattedMessage } from '$lib/js/eventMessage';
+    //import GameRenderState from '$lib/js/gameTEMPGONE.svelte';
+    import { PronounSetting } from '$lib/js/tribute';
+    //import RenderState from '$lib/js/gameTEMPGONE.svelte';
+    import { TitleCase } from '$lib/js/utils';
+    import { type TributeCharacterSelectOptions } from '$lib/js/tribute';
+    //import Game from "$lib/js/gameTEMPGONE.svelte";
+    import { Game, GameRenderState, RenderState } from '$lib/js/game';
+
+
     import Message from '$lib/components/hgs/Message.svelte';
     import Card from '$lib/components/hgs/Card.svelte';
     import TributeStatList from '$lib/components/hgs/TributeStatList.svelte';

@@ -1,11 +1,16 @@
 <script lang="ts">
     import Stripe from "$lib/components/Stripe.svelte";
-    import {
+    import { Configuration } from "../../js/configuration";
+    import { DownloadURL } from "../../js/utils";
+    import type EventList from "$lib/js/game.svelte"
+    import { PronounSetting } from "../../js/tribute";
+    import { type TributeCharacterSelectOptions } from "../../js/tribute";
+    /**import {
         Configuration,
         DownloadURL, type EventList,
         PronounSetting,
         type TributeCharacterSelectOptions
-    } from '$lib/js/hgs.svelte';
+    } from '$lib/js/hgs.svelte';*/
     import SingleFileDialog from "$lib/components/dialog/SingleFileDialog.svelte";
     import MultiFileDialog from "$lib/components/dialog/MultiFileDialog.svelte";
     import Changelog from "$lib/components/hgs/Changelog.svelte";
