@@ -1,6 +1,6 @@
 <script lang="ts">
     import agma_logo from '$lib/images/agma_logo.png';
-    import type {LanguagePage} from "$lib/js/types";
+    import type {LanguagePage} from "$lib/js/types.d";
     import PageLink from '$lib/components/header/PageLink.svelte';
     import Hamburger from '$lib/components/header/Hamburger.svelte';
     import {MediaQuery} from 'svelte/reactivity';
