@@ -1,5 +1,5 @@
 import {error, type Handle, redirect} from '@sveltejs/kit';
-import type {LanguagePage} from '$lib/js/types';
+//import type {LanguagePage} from '$lib/js/types';
 
 import * as fs from 'node:fs';
 import sqlite3 from 'sqlite3';
@@ -7,7 +7,7 @@ import {handle as HandleAuth} from './auth';
 import {sequence} from '@sveltejs/kit/hooks';
 
 // Grab all language pages.
-function LoadLanguagePages() {
+/* function LoadLanguagePages() {
     const lang_pages = fs.readdirSync('src/routes/languages').filter(e => !e.startsWith('+')).sort()
 
     // Some languages have custom page names, so load those.
@@ -30,7 +30,7 @@ function LoadLanguagePages() {
     return langs
 }
 
-const lang_pages = Object.freeze(LoadLanguagePages())
+const lang_pages = Object.freeze(LoadLanguagePages()) */
 
 // Grab all CCC submissions.
 const CCCLangsPath = '../static/ccc-langs.txt'
@@ -75,7 +75,7 @@ function SetUpDB() {
 
 const HandleSetUp: Handle = async ({event, resolve}) => {
     if (!event.locals.db) event.locals.db = db
-    if (!event.locals.language_pages) event.locals.language_pages = lang_pages
+    //if (!event.locals.language_pages) event.locals.language_pages = lang_pages
     if (!event.locals.ccc_submissions) event.locals.ccc_submissions = ccc_submissions
     return resolve(event)
 }

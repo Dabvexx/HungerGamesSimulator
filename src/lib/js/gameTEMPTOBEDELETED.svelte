@@ -1,13 +1,13 @@
 <script lang="ts">
-import { type GreyscaleSettings } from "./settings"
+import { type GreyscaleSettings } from "./settings.ts.tmp"
 import { ParsePronounsFromCharacterCreation, Tribute, type TributeCharacterSelectOptions } from "./tribute"
 import type { FormattedMessage } from "./eventMessage"
 import { ComposeEventMessage } from "./eventMessage"
-import { GameSettings } from "./gameOptions"
+import { GameSettings } from "./gameOptions.ts.tmp"
 import { TitleCase, clamp, randomInt, shuffle } from "./utils"
 import { Event } from "./events"
 import { GameEvent, GameStage, type EventList, type GameEventList, type GameRound } from "./types"
-    import { RequiredFatalitiesMode } from "./gameOptions";
+    import { RequiredFatalitiesMode } from "./gameOptions.ts.tmp";
 
 /** The state of the game. */
 const enum GameState {

@@ -1,8 +1,9 @@
 <script lang='ts'>
     import SimpleDialog from '$lib/components/dialog/SimpleDialog.svelte';
     import type { EventList } from '$lib/js/types';
-    import { GameSettings } from '$lib/js/gameOptions';
-    import { RequiredFatalitiesMode } from '$lib/js/gameOptions';
+    import { Configuration } from '$lib/js/configuration';
+    //import { GameSettings } from '$lib/js/gameOptions.ts.tmp';
+    //import { RequiredFatalitiesMode } from '$lib/js/gameOptions.ts.tmp';
 /*     import {
         type EventList,
         GameSettings,
@@ -17,10 +18,10 @@
 
     let {event_list = $bindable()}: Props = $props()
     let dialog: SimpleDialog
-    let day_override: boolean = $state(GameSettings.value.starting_day !== undefined)
-    let day: number = $state(GameSettings.value.starting_day ?? 1)
+    let day_override: boolean = $state(Configuration.GameOptions.GameSettings.value.starting_day !== undefined)
+    let day: number = $state(Configuration.GameOptions.GameSettings.value.starting_day ?? 1)
     let actual_day = $derived(day_override ? day : undefined)
-    $effect(() => { GameSettings.value.starting_day = actual_day })
+    $effect(() => { Configuration.GameOptions.GameSettings.value.starting_day = actual_day })
 
     export function open() { dialog.open() }
 </script>
@@ -40,16 +41,16 @@ If specified in percent, this is relative to the total number of tributes, alive
                     Deaths per Round
                 </abbr>
             </legend>
-            <select bind:value={GameSettings.value.required_fatalities_mode}>
-                <option value='{RequiredFatalitiesMode.Disable}'>Disable</option>
-                <option value='{RequiredFatalitiesMode.Percent}'>Percent (max: 100)</option>
-                <option value='{RequiredFatalitiesMode.Absolute}'>Players</option>
+            <select bind:value={Configuration.GameOptions.GameSettings.value.required_fatalities_mode}>
+                <option value='{Configuration.GameOptions.RequiredFatalitiesMode.Disable}'>Disable</option>
+                <option value='{Configuration.GameOptions.RequiredFatalitiesMode.Percent}'>Percent (max: 100)</option>
+                <option value='{Configuration.GameOptions.RequiredFatalitiesMode.Absolute}'>Players</option>
             </select>
             <input
-                bind:value={GameSettings.value.required_fatalities}
+                bind:value={Configuration.GameOptions.GameSettings.value.required_fatalities}
                 type='number'
                 max='100'
-                disabled={GameSettings.value.required_fatalities_mode === RequiredFatalitiesMode.Disable}
+                disabled={Configuration.GameOptions.GameSettings.value.required_fatalities_mode === Configuration.GameOptions.RequiredFatalitiesMode.Disable}
             >
         </fieldset>
 
@@ -70,9 +71,9 @@ If specified in percent, this is relative to the total number of tributes, alive
             <legend>
                 <abbr title='When to use greyscale portraits for dead tributes.'>Greyscale Portraits</abbr>
             </legend>
-            <Checkbox bind:checked={GameSettings.value.greyscale_settings.in_events}>In Events</Checkbox>
-            <Checkbox bind:checked={GameSettings.value.greyscale_settings.end_of_day_summary}>At End of Day</Checkbox>
-            <Checkbox bind:checked={GameSettings.value.greyscale_settings.end_of_game_summary}>At End of Game</Checkbox>
+            <Checkbox bind:checked={Configuration.GameOptions.GameSettings.value.greyscale_settings.in_events}>In Events</Checkbox>
+            <Checkbox bind:checked={Configuration.GameOptions.GameSettings.value.greyscale_settings.end_of_day_summary}>At End of Day</Checkbox>
+            <Checkbox bind:checked={Configuration.GameOptions.GameSettings.value.greyscale_settings.end_of_game_summary}>At End of Game</Checkbox>
         </fieldset>
     </div>
 </SimpleDialog>

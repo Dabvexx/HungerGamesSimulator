@@ -8,12 +8,9 @@
     import { Configuration } from '$lib/js/configuration';
     import type { EventList } from '$lib/js/types';
     import { type FormattedMessage } from '$lib/js/eventMessage';
-    //import GameRenderState from '$lib/js/gameTEMPGONE.svelte';
     import { PronounSetting } from '$lib/js/tribute';
-    //import RenderState from '$lib/js/gameTEMPGONE.svelte';
     import { TitleCase } from '$lib/js/utils';
     import { type TributeCharacterSelectOptions } from '$lib/js/tribute';
-    //import Game from "$lib/js/gameTEMPGONE.svelte";
     import { Game, GameRenderState, RenderState } from '$lib/js/game';
 
 

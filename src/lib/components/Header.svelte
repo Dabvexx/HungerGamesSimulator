@@ -1,5 +1,4 @@
 <script lang="ts">
-    import agma_logo from '$lib/images/agma_logo.png';
     import type {LanguagePage} from "$lib/js/types.d";
     import PageLink from '$lib/components/header/PageLink.svelte';
     import Hamburger from '$lib/components/header/Hamburger.svelte';
@@ -35,7 +34,6 @@
 
             <PageLink
                 href="/tools/hunger_games_simulator"
-                class="hg-link"
             >
                 Hunger Games Simulator
             </PageLink>

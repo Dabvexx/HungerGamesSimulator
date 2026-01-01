@@ -2,7 +2,7 @@
     import Stripe from "$lib/components/Stripe.svelte";
     import { Configuration } from "../../js/configuration";
     import { DownloadURL } from "../../js/utils";
-    import type EventList from "$lib/js/gameTEMPGONE.svelte"
+    import type { EventList } from "$lib/js/types";
     import { PronounSetting } from "../../js/tribute";
     import { type TributeCharacterSelectOptions } from "../../js/tribute";
     /**import {

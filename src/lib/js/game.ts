@@ -1,12 +1,8 @@
-import { type GreyscaleSettings } from "./settings"
 import { ParsePronounsFromCharacterCreation, Tribute, type TributeCharacterSelectOptions } from "./tribute"
-import type { FormattedMessage } from "./eventMessage"
-import { ComposeEventMessage } from "./eventMessage"
-import { GameSettings } from "./gameOptions"
 import { TitleCase, clamp, randomInt, shuffle } from "./utils"
 import { Event } from "./events"
 import { GameEvent, GameStage, type EventList, type GameEventList, type GameRound } from "./types"
-    import { RequiredFatalitiesMode } from "./gameOptions";
+import { Configuration } from "./configuration"
 
 /** The state of the game. */
 export const enum GameState {
@@ -78,7 +74,7 @@ export class GameRenderState {
     readonly tributes_alive: Tribute[]
 
     /** When to render portraits in greyscale. */
-    readonly greyscale_settings: GreyscaleSettings
+    readonly greyscale_settings: Configuration.GameOptions.GreyscaleSettings
 
     constructor(
         state: RenderState,
@@ -86,7 +82,7 @@ export class GameRenderState {
         rounds: GameRound[],
         tributes_died: Tribute[],
         tributes_alive: Tribute[],
-        greyscale_settings: GreyscaleSettings
+        greyscale_settings: Configuration.GameOptions.GreyscaleSettings
     ) {
         this.state = state
         this.game_title = game_title
@@ -154,7 +150,7 @@ export class Game {
     readonly required_fatalities: number | undefined = undefined
 
     /** Greyscale mode. */
-    readonly #greyscale_settings: GreyscaleSettings
+    readonly #greyscale_settings: Configuration.GameOptions.GreyscaleSettings
 
     /** Create a new game. */
     constructor(
@@ -173,11 +169,11 @@ export class Game {
         }
 
         // Set required fatality rate.
-        const opts = GameSettings.value
-        if (opts.required_fatalities_mode !== RequiredFatalitiesMode.Disable) {
+        const opts = Configuration.GameOptions.GameSettings.value
+        if (opts.required_fatalities_mode !== Configuration.GameOptions.RequiredFatalitiesMode.Disable) {
             if (isFinite(opts.required_fatalities)) {
                 // Relative to the total number of tributes.
-                if (opts.required_fatalities_mode === RequiredFatalitiesMode.Percent) {
+                if (opts.required_fatalities_mode === Configuration.GameOptions.RequiredFatalitiesMode.Percent) {
                     this.required_fatalities = Math.ceil(
                         (clamp(opts.required_fatalities, 0, 100) / 100.0) * this.tributes.length
                     )
